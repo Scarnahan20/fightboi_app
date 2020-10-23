@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import './screens/home_screen.dart';
+import './screens/news_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FIGHTBOI',
       theme: ThemeData.dark(),
-      home: HomePage(),
+      initialRoute: NewsScreen.id,
+      routes: {
+        HomeScreen.id: (context) => HomeScreen(),
+        NewsScreen.id: (context) => NewsScreen(),
+      },
     );
   }
 }

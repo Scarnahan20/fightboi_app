@@ -7,12 +7,13 @@ import '../constants.dart';
 import '../components/login_field.dart';
 import '../components/rounded_button.dart';
 
-class HomePage extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
+  static const String id = 'home_screen';
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   String username;
 
   String password;
