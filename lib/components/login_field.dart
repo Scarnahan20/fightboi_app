@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 
 class LoginField extends StatelessWidget {
   final String hint;
+  final Function onChanged;
 
-  LoginField(this.hint);
+  LoginField({this.hint, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: (value) {
-        //Username field
-      },
+      onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: TextStyle(
