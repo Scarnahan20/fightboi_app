@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "550221275487",
+    "firebase_url": "https://fightboi-app.firebaseio.com",
+    "project_id": "fightboi-app",
+    "storage_bucket": "fightboi-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550221275487:android:f61148625e1bcaebe096ea",
+        "android_client_info": {
+          "package_name": "com.fightboi.fightboi_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550221275487-nmf2qit3l304j29hr35mn963prvb5k34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaSIbTNemHlzr4uHS_WegAT0aYe8iFu-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550221275487-nmf2qit3l304j29hr35mn963prvb5k34.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
