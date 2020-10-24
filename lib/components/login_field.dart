@@ -3,13 +3,18 @@ import 'package:flutter/material.dart';
 class LoginField extends StatelessWidget {
   final String hint;
   final Function onChanged;
+  final bool isPassword;
 
-  LoginField({this.hint, this.onChanged});
+  LoginField({this.hint, this.onChanged, this.isPassword});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: TextStyle(
+        color: Colors.black,
+      ),
       onChanged: onChanged,
+      obscureText: isPassword,
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: TextStyle(

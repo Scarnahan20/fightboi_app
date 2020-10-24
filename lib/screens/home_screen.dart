@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import '../constants.dart';
-import '../components/login_field.dart';
-import '../components/rounded_button.dart';
+import '../screens/news_screen.dart';
+import '../screens/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -14,11 +13,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String username;
-
-  String password;
-
-  final _auth = FirebaseAuth.instance;
+  _checkLogin() async {
+    Navigator.pushNamed(context, LoginScreen.id);
+  }
 
   _launchURL() async {
     const url = 'http://fightboi.com';
@@ -27,6 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
     } else {
       throw 'Cannot launch $url';
     }
+  }
+
+  _showNotifications() async {
+    await Navigator.pushNamed(context, NewsScreen.id);
   }
 
   @override
@@ -64,36 +65,27 @@ class _HomeScreenState extends State<HomeScreen> {
             MaterialButton(
               color: Colors.red[500],
               child: Text(
-                'SHOP NOW',
+                'NEWS',
+                style: kShopButtonStyle,
+              ),
+              onPressed: _showNotifications,
+            ),
+            MaterialButton(
+              color: Colors.red[500],
+              child: Text(
+                'SHOP',
                 style: kShopButtonStyle,
               ),
               onPressed: _launchURL,
             ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  LoginField(
-                    hint: 'Username',
-                    onChanged: (value) {},
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  LoginField(
-                    hint: 'Password',
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  RoundedButton(
-                    text: 'Login',
-                    onPressed: () {},
-                  ),
-                ],
+            MaterialButton(
+              color: Colors.red[500],
+              child: Text(
+                'CHAT',
+                style: kShopButtonStyle,
               ),
-            )
+              onPressed: _checkLogin,
+            ),
           ],
         ),
       ),

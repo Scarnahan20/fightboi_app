@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../components/rounded_button.dart';
-import '../screens/home_screen.dart';
 import '../constants.dart';
 
 class NewsScreen extends StatelessWidget {
@@ -40,12 +38,6 @@ class NewsScreen extends StatelessWidget {
                     )
                   ],
                 );
-              },
-            ),
-            RoundedButton(
-              text: 'ENTER',
-              onPressed: () {
-                Navigator.pushNamed(context, HomeScreen.id);
               },
             ),
           ],
