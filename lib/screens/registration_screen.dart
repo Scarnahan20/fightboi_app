@@ -4,16 +4,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../components/login_field.dart';
 import '../components/rounded_button.dart';
 import '../constants.dart';
-import './registration_screen.dart';
+import './chat_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  static const String id = "login_screen";
+class RegistrationScreen extends StatefulWidget {
+  static const String id = "registration_screen";
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   String username;
   String password;
 
@@ -44,6 +44,14 @@ class _LoginScreenState extends State<LoginScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  Padding(
+                    padding: EdgeInsets.all(15.0),
+                    child: Text(
+                      'Register now to gain access to the chat!',
+                      style: kTitleStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                   LoginField(
                     hint: 'Username',
                     onChanged: (value) {
@@ -69,36 +77,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 10.0,
                   ),
                   RoundedButton(
-                    text: 'Login',
+                    text: 'Register',
                     onPressed: () async {
                       try {
                         final user = _auth.signInWithEmailAndPassword(
                             email: username, password: password);
                         if (user != null) {
-                          Navigator.pop(context);
+                          Navigator.pushNamed(context, ChatScreen.id);
                         }
                       } catch (e) {
                         print(e);
                       }
-                    },
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Text(
-                      'New to FIGHTBOI?',
-                      style: kTitleStyle,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  RoundedButton(
-                    text: 'Register',
-                    onPressed: () {
-                      Navigator.pushNamed(context, RegistrationScreen.id);
                     },
                   ),
                 ],

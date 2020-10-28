@@ -40,9 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              child: Image(
-                image: AssetImage('assets/logo.png'),
+            Hero(
+              tag: 'logo',
+              child: Container(
+                child: Image(
+                  image: AssetImage('assets/logo.png'),
+                ),
               ),
             ),
             CarouselSlider(

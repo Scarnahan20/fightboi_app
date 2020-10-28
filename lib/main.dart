@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import './screens/home_screen.dart';
 import './screens/news_screen.dart';
 import './screens/login_screen.dart';
+import './screens/registration_screen.dart';
+import './screens/chat_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
         HomeScreen.id: (context) => HomeScreen(),
         NewsScreen.id: (context) => NewsScreen(),
         LoginScreen.id: (context) => LoginScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
+        ChatScreen.id: (context) => ChatScreen(),
       },
     );
   }

@@ -6,8 +6,9 @@ class NewsScreen extends StatelessWidget {
   static const String id = 'news_screen';
 
   final announcements = {
-    'Also (10/23/20)': 'I have made another announcement to test something.',
-    'First (10/23/20)': 'I hereby create this announcement page.',
+    'Updates - 10/28/20': 'Check out these Hero animations.',
+    'Also - 10/23/20': 'I have made another announcement to test something.',
+    'First - 10/23/20': 'I hereby create this announcement page.',
   };
 
   @override
@@ -20,6 +21,14 @@ class NewsScreen extends StatelessWidget {
         color: Colors.white,
         child: Column(
           children: [
+            Hero(
+              tag: 'logo',
+              child: Container(
+                child: Image(
+                  image: AssetImage('assets/logo.png'),
+                ),
+              ),
+            ),
             ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
