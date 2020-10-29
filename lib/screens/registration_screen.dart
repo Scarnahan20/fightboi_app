@@ -33,24 +33,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  child: Image(
-                    image: AssetImage('assets/logo.png'),
-                  ),
-                ),
-              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Text(
-                      'Register now to gain access to the chat!',
-                      style: kTitleStyle,
-                      textAlign: TextAlign.center,
-                    ),
+                  Text(
+                    'Register now to gain access to the chat!',
+                    style: kTitleStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 50.0,
                   ),
                   LoginField(
                     hint: 'Username',

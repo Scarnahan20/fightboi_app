@@ -21,91 +21,83 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('LOGIN'),
-      ),
-      body: Container(
-        color: Colors.white,
-        child: Padding(
-          padding: EdgeInsets.all(15.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.all(15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'LOGIN',
+            style: kTitleStyle,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  child: Image(
-                    image: AssetImage('assets/logo.png'),
-                  ),
-                ),
+              LoginField(
+                hint: 'Username',
+                onChanged: (value) {
+                  setState(() {
+                    username = value;
+                  });
+                },
+                isPassword: false,
+                isActive: true,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  LoginField(
-                    hint: 'Username',
-                    onChanged: (value) {
-                      setState(() {
-                        username = value;
-                      });
-                    },
-                    isPassword: false,
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  LoginField(
-                    hint: 'Password',
-                    onChanged: (value) {
-                      setState(() {
-                        password = value;
-                      });
-                    },
-                    isPassword: true,
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  RoundedButton(
-                    text: 'Login',
-                    onPressed: () async {
-                      try {
-                        final user = _auth.signInWithEmailAndPassword(
-                            email: username, password: password);
-                        if (user != null) {
-                          Navigator.pop(context);
-                        }
-                      } catch (e) {
-                        print(e);
-                      }
-                    },
-                  ),
-                ],
+              SizedBox(
+                height: 10.0,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Text(
-                      'New to FIGHTBOI?',
-                      style: kTitleStyle,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  RoundedButton(
-                    text: 'Register',
-                    onPressed: () {
-                      Navigator.pushNamed(context, RegistrationScreen.id);
-                    },
-                  ),
-                ],
+              LoginField(
+                hint: 'Password',
+                onChanged: (value) {
+                  setState(() {
+                    password = value;
+                  });
+                },
+                isPassword: true,
+                isActive: false,
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              RoundedButton(
+                text: 'Login',
+                onPressed: () async {
+                  try {
+                    final user = _auth.signInWithEmailAndPassword(
+                        email: username, password: password);
+                    if (user != null) {
+                      Navigator.pop(context);
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
+                },
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Text(
+                'OR',
+                style: kTitleStyle,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              RoundedButton(
+                text: 'Register',
+                onPressed: () {
+                  Navigator.pushNamed(context, RegistrationScreen.id);
+                },
               ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }

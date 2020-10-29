@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import '../constants.dart';
+import '../components/menu_button.dart';
 import '../screens/news_screen.dart';
 import '../screens/login_screen.dart';
 
@@ -13,14 +13,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  _checkLogin() async {
-    Navigator.pushNamed(context, LoginScreen.id);
+  _checkLogin() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => SingleChildScrollView(
+        child: Container(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: LoginScreen(),
+        ),
+      ),
+    );
   }
 
   _launchURL() async {
     const url = 'http://fightboi.com';
     if (await canLaunch(url)) {
-      await launch(url);
+      await launch(
+        url,
+        forceWebView: true,
+        enableJavaScript: true,
+      );
     } else {
       throw 'Cannot launch $url';
     }
@@ -40,12 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Hero(
-              tag: 'logo',
-              child: Container(
-                child: Image(
-                  image: AssetImage('assets/logo.png'),
-                ),
+            Container(
+              child: Image(
+                image: AssetImage('assets/logo.png'),
               ),
             ),
             CarouselSlider(
@@ -65,29 +76,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               }).toList(),
             ),
-            MaterialButton(
-              color: Colors.red[500],
-              child: Text(
-                'NEWS',
-                style: kShopButtonStyle,
-              ),
+            MenuButton(
+              text: 'NEWS',
               onPressed: _showNotifications,
             ),
-            MaterialButton(
-              color: Colors.red[500],
-              child: Text(
-                'SHOP',
-                style: kShopButtonStyle,
-              ),
-              onPressed: _launchURL,
-            ),
-            MaterialButton(
-              color: Colors.red[500],
-              child: Text(
-                'CHAT',
-                style: kShopButtonStyle,
-              ),
+            MenuButton(
+              text: 'CHAT',
               onPressed: _checkLogin,
+            ),
+            MenuButton(
+              text: 'SHOP',
+              onPressed: _launchURL,
             ),
           ],
         ),

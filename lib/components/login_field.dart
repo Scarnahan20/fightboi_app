@@ -4,8 +4,9 @@ class LoginField extends StatelessWidget {
   final String hint;
   final Function onChanged;
   final bool isPassword;
+  final bool isActive;
 
-  LoginField({this.hint, this.onChanged, this.isPassword});
+  LoginField({this.hint, this.onChanged, this.isPassword, this.isActive});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class LoginField extends StatelessWidget {
       ),
       onChanged: onChanged,
       obscureText: isPassword,
+      autofocus: isActive,
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: TextStyle(
