@@ -48,47 +48,49 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              child: Image(
-                image: AssetImage('assets/logo.png'),
+      body: SafeArea(
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                child: Image(
+                  image: AssetImage('assets/logo.png'),
+                ),
               ),
-            ),
-            CarouselSlider(
-              options: CarouselOptions(height: 200.0),
-              items: [1, 2, 3].map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(),
-                      child: Image(
-                        image: AssetImage('assets/$i.png'),
-                      ),
-                    );
-                  },
-                );
-              }).toList(),
-            ),
-            MenuButton(
-              text: 'NEWS',
-              onPressed: _showNotifications,
-            ),
-            MenuButton(
-              text: 'CHAT',
-              onPressed: _checkLogin,
-            ),
-            MenuButton(
-              text: 'SHOP',
-              onPressed: _launchURL,
-            ),
-          ],
+              CarouselSlider(
+                options: CarouselOptions(height: 200.0),
+                items: [1, 2, 3].map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(),
+                        child: Image(
+                          image: AssetImage('assets/$i.png'),
+                        ),
+                      );
+                    },
+                  );
+                }).toList(),
+              ),
+              MenuButton(
+                text: 'NEWS',
+                onPressed: _showNotifications,
+              ),
+              MenuButton(
+                text: 'CHAT',
+                onPressed: _checkLogin,
+              ),
+              MenuButton(
+                text: 'SHOP',
+                onPressed: _launchURL,
+              ),
+            ],
+          ),
         ),
       ),
     );

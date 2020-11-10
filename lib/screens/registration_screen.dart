@@ -14,8 +14,9 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  String username;
+  String email;
   String password;
+  String confirmPassword;
 
   final _auth = FirebaseAuth.instance;
 
@@ -37,21 +38,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Register now to gain access to the chat!',
+                    'Register now!',
                     style: kTitleStyle,
                     textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 50.0,
                   ),
                   LoginField(
                     hint: 'Username',
                     onChanged: (value) {
                       setState(() {
-                        username = value;
+                        email = value;
                       });
                     },
                     isPassword: false,
+                    isActive: true,
                   ),
                   SizedBox(
                     height: 10.0,
@@ -64,6 +63,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       });
                     },
                     isPassword: true,
+                    isActive: false,
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  LoginField(
+                    hint: 'Confirm Password',
+                    onChanged: (value) {
+                      setState(() {
+                        confirmPassword = value;
+                      });
+                    },
+                    isPassword: true,
+                    isActive: false,
                   ),
                   SizedBox(
                     height: 10.0,
@@ -71,14 +84,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   RoundedButton(
                     text: 'Register',
                     onPressed: () async {
-                      try {
-                        final user = _auth.signInWithEmailAndPassword(
-                            email: username, password: password);
-                        if (user != null) {
-                          Navigator.pushNamed(context, ChatScreen.id);
+                      if (password == confirmPassword) {
+                        try {
+                          final user = _auth.createUserWithEmailAndPassword(
+                              email: email, password: password);
+                          if (user != null) {
+                            Navigator.pushNamed(context, ChatScreen.id);
+                          }
+                        } catch (e) {
+                          print(e);
                         }
-                      } catch (e) {
-                        print(e);
                       }
                     },
                   ),

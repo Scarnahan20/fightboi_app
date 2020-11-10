@@ -1,3 +1,4 @@
+import 'package:fightboi_app/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -71,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     final user = _auth.signInWithEmailAndPassword(
                         email: username, password: password);
                     if (user != null) {
-                      Navigator.pop(context);
+                      Navigator.pushNamed(context, ChatScreen.id);
                     }
                   } catch (e) {
                     print(e);
